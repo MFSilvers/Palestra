@@ -4,6 +4,7 @@ import TextLink from '@/components/TextLink.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Checkbox } from '@/components/ui/checkbox';
 import AuthBase from '@/layouts/AuthLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
@@ -13,6 +14,7 @@ const form = useForm({
     email: '',
     password: '',
     password_confirmation: '',
+    is_admin: false,
 });
 
 const submit = () => {
@@ -38,6 +40,11 @@ const submit = () => {
                     <Label for="email">Email address</Label>
                     <Input id="email" type="email" required :tabindex="2" autocomplete="email" v-model="form.email" placeholder="email@example.com" />
                     <InputError :message="form.errors.email" />
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <Checkbox id="is_admin" v-model="form.is_admin" />
+                    <Label for="is_admin">Register as admin</Label>
                 </div>
 
                 <div class="grid gap-2">
